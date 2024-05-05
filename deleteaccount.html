@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+    
+    <!-- SEO meta tags -->
+    <title>Prodnote</title>
+    <meta name="description" content="prodnote - Product reviewing app">
+    <meta name="keywords" content="Prodnote, product review , movie review app  ">
+    <meta name="author" content="Prodnote">
+    <!-- Webmanifest + Favicon / App icons -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/jpeg" href="assets/app-icons/prodnote.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="assets/app-icons/prodnote.png">
+
+        
+    <!-- Theme switcher (color modes) -->
+    <script src="assets/js/theme-switcher.js"></script>
+
+    <!-- Import Google font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+    <!-- Font icons -->
+    <link rel="stylesheet" href="assets/icons/around-icons.min.css">
+
+    <!-- Theme styles + Bootstrap -->
+    <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+
+    <!-- Page loading styles -->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      [data-bs-theme="dark"] .page-loading {
+        background-color: #121519;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #6f788b;
+      }
+      [data-bs-theme="dark"] .page-loading-inner > span {
+        color: #fff;
+        opacity: .6;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        background-color: #d7dde2; 
+        border-radius: 50%;
+        opacity: 0;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      [data-bs-theme="dark"] .page-spinner {
+        background-color: rgba(255,255,255,.25);
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+    </style>
+
+    <!-- Page loading scripts -->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector('.page-loading')
+          preloader.classList.remove('active')
+          setTimeout(function () {
+            preloader.remove()
+          }, 1500)
+        }
+      })()
+      function deleteAccount() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var apiUrl = "https://prodnote.com/deleteaccount";
+        // You should use HTTPS for secure communication
+        // For demonstration purposes, we're just using a POST request with JSON payload.
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Account deleted successfully.");
+            } else {
+                alert("Failed to delete account. Please try again later.");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Failed to delete account. Please check your internet connection.");
+        });
+    }
+    
+    function handleSubmit(event) {
+        event.preventDefault();
+        var confirmation = confirm("Are you sure you want to delete your account?");
+        if (confirmation) {
+            deleteAccount();
+        } else {
+            alert("Account deletion cancelled.");
+        }
+    }
+    </script>
+  </head>
+
+
+  <!-- Body -->
+  <body>
+
+
+    <!-- Page loading spinner -->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div>
+        <span>Loading...</span>
+      </div>
+    </div>
+
+
+    <!-- Page wrapper -->
+    <main class="page-wrapper">
+      <div class="d-lg-flex position-relative h-100">
+        <header class="navbar navbar-expand-lg fixed-top">
+          <div class="container">
+  
+            <!-- Navbar brand (Logo) -->
+            <a class="navbar-brand pe-sm-3" href="index.html">
+              <span class="text-primary flex-shrink-0 me-2">
+                <img class="d-block mx-auto" src="assets/app-icons/prodnote.png" width="32" alt="App screen">
+              </span>
+              ProdNote
+            </a>
+  
+            <!-- Theme switcher -->
+            <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+              <input class="form-check-input" type="checkbox" id="theme-mode">
+              <label class="form-check-label" for="theme-mode">
+                <i class="ai-sun fs-lg"></i>
+              </label>
+              <label class="form-check-label" for="theme-mode">
+                <i class="ai-moon fs-lg"></i>
+              </label>
+            </div>
+          </div>
+        </header>
+        <!-- Home button -->
+       
+
+        <!-- Sign in form -->
+          <div  style="width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-top:100px">
+            <h2>Delete account</h2>
+            <form class="needs-validation" style="width: 250px;" onsubmit="handleSubmit(event);">
+              <div class="pb-3 mb-3">
+                <div class="position-relative">
+                  <i class="ai-mail fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                  <input class="form-control form-control-lg ps-5" type="email" placeholder="Email address"  id="username" name="username" required>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="position-relative">
+                  <i class="ai-lock-closed fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                  <div class="password-toggle">
+                    <input class="form-control form-control-lg ps-5" type="password" placeholder="Password" id="password" name="password" required>
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-lg btn-primary w-100 mb-4" type="submit"  value="Delete Account">Delete</button>
+
+             
+            </form>
+          </div>      
+    </main>
+    <footer class="footer bg-secondary py-5">
+      <div class="container pt-md-2 pt-lg-3 pt-xl-4">
+        <div class="row pb-4 pb-md-5 pt-sm-2 mb-lg-2">
+          <div class="col-md-4 col-lg-3 pb-2 pb-md-0 mb-4 mb-md-0">
+            <a class="navbar-brand text-nav py-0 mb-3 mb-md-4" href="index.html">
+              <span class="text-primary flex-shrink-0 me-2">
+                <img class="d-block mx-auto" src="assets/app-icons/prodnote.png" width="32" alt="App screen">
+              </span>
+              <span>ProdNote</span>
+            </a>
+            <p class="fs-sm pb-2 pb-md-3 mb-3">Discover, Discuss, Decide, Delight: Your Destination for Informed Shopping and Joyful Discoveries!.</p>
+          </div>
+          <div class="col-md-8 col-lg-7 col-xl-6 offset-lg-2 offset-xl-3">
+            <div class="row row-cols-1 row-cols-sm-3">
+           
+              <div class="col mb-4 mb-md-0">
+                <ul class="nav flex-column">
+                  <li><a class="nav-link fw-normal py-1 px-0" href="termsofservice.html">Terms of service</a></li>
+                  <li><a class="nav-link fw-normal py-1 px-0" href="privacypolicy.html">Privacy policy</a></li>
+                  <li><a class="nav-link fw-normal py-1 px-0" href="deleteaccount.html">DeleteAccount</a></li>
+                  <li><a class="nav-link fw-normal py-1 px-0" href="index.html">Home</a></li>
+                </ul>
+              </div>
+              <div class="col">
+                <a class="btn btn-secondary px-3 py-2 mb-3 me-3 me-md-0" href="#">
+                  <img class="mx-1 d-dark-mode-none" src="assets/img/market/googleplay-dark.svg" width="119" alt="Google Play">
+                  <img class="mx-1 d-none d-dark-mode-block" src="assets/img/market/googleplay-light.svg" width="119" alt="Google Play">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="nav fs-sm mb-0">
+          <span class="text-body-secondary">&copy; All rights reserved.</span>
+        </p>
+      </div>
+    </footer>
+  
+
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+      <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+      </svg>
+      <i class="ai-arrow-up"></i>
+    </a>
+
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="assets/js/theme.min.js"></script>
+  </body>
+</html>
