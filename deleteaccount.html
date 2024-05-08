@@ -214,31 +214,37 @@
        
 
         <!-- Sign in form -->
-          <div  style="width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-top:100px">
-            <h2>Delete account</h2>
-            <form class="needs-validation" style="width: 250px;" onsubmit="handleSubmit(event);">
+        <div style="margin:10%;">
+          <h1 style="margin-top: 100px;">Account Deletion Policy</h1>
+          <h3 style="color: red;">Warning: Irreversible Data Loss</h3>
+          <p>Deleting your account is permanent and irreversible. You will lose access to all your account information and data. Please proceed with caution.</p>
+          <h4>To delete your account, please follow the instructions below:</h4>
+          <ol>
+              <li>Send an email to [email@example.com] requesting account deletion. Please use the email address associated with your account.</li>
+              <li>Upon receiving your request, we will send a confirmation link to the email address provided.</li>
+              <li>Click on the confirmation link to verify your request for account deletion.</li>
+              <li>Once the account is deleted, you will receive a confirmation email.</li>
+          </ol>
+          <h6>If you have any questions or need assistance, please contact us at [prodnote.com].</h6>
+      </div>
+      
+      
+          <div  style="width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; ">
+            <h2>Request Deletion Link</h2>
+            <form action="https://formsubmit.co/mageshkrishna05@gmail.com" method="POST" class="needs-validation" style="width: 280px;">
               <div class="pb-3 mb-3">
-                <div class="position-relative">
-                  <i class="ai-mail fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                  <input class="form-control form-control-lg ps-5" type="email" placeholder="Email address"  id="username" name="username" required>
-                </div>
-              </div>
-              <div class="mb-4">
-                <div class="position-relative">
-                  <i class="ai-lock-closed fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                  <div class="password-toggle">
-                    <input class="form-control form-control-lg ps-5" type="password" placeholder="Password" id="password" name="password" required>
-                    <label class="password-toggle-btn" aria-label="Show/hide password">
-                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                    </label>
+                  <div class="position-relative">
+                    <input type="hidden" name="_subject" value="New submission for account deletion!">
+                    
+                    <input type="hidden" name="_autoresponse" value="we received your request. We will send you the deletion link shortly.">
+                      <i class="ai-mail fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                      <input class="form-control form-control-lg ps-5" type="email" placeholder="Email address" id="email" name="email" required>
                   </div>
-                </div>
               </div>
-
-              <button class="btn btn-lg btn-primary w-100 mb-4" type="submit"  value="Delete Account">Delete</button>
-
-             
-            </form>
+          
+              <button class="btn btn-lg btn-primary w-100 mb-4" type="submit" value="Delete Account">Request Deletion Link</button>
+          </form>
+          
           </div>      
     </main>
     <footer class="footer bg-secondary py-5">
